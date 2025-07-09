@@ -1,15 +1,6 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import SignInForm from "./components/sign-in-form";
 import SignUpForm from "./components/sign-up-form";
 
 const AuthenticationPage = () => {
@@ -21,18 +12,7 @@ const AuthenticationPage = () => {
           <TabsTrigger value="register">Criar Conta</TabsTrigger>
         </TabsList>
         <TabsContent value="login">
-          <Card>
-            <CardHeader>
-              <CardTitle>Login</CardTitle>
-              <CardDescription>
-                Make changes to your account here. Click save when you&apos;re
-                done.
-              </CardDescription>
-            </CardHeader>
-            <CardFooter>
-              <Button>Entrar</Button>
-            </CardFooter>
-          </Card>
+          <SignInForm />
         </TabsContent>
         <TabsContent value="register">
           <SignUpForm />
