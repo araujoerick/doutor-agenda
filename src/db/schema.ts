@@ -114,12 +114,11 @@ export const doctorsTable = pgTable("doctors", {
     .references(() => clinicsTable.id, { onDelete: "cascade" }),
   name: text("name").notNull(),
   avatarImageUrl: text("avatar_image_url"),
-  // 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday,
-  // 6 - Saturday, 0 - Sunday
-  avaliableFromWeekDay: integer("avaliable_from_week_day").notNull(),
-  avaliableToWeekDay: integer("avaliable_to_week_day").notNull(),
-  avaliableFromTime: time("avaliable_from_time").notNull(),
-  avaliableToTime: time("avaliable_to_time").notNull(),
+  // 1- Monday, 2- Tuesday, 3- Wednesday, 4- Thursday, 5- Friday, 6- Saturday, 0- Sunday
+  availableFromWeekDay: integer("available_from_week_day").notNull(),
+  availableToWeekDay: integer("available_to_week_day").notNull(),
+  availableFromTime: time("available_from_time").notNull(),
+  availableToTime: time("available_to_time").notNull(),
   specialty: text("specialty").notNull(),
   appointmentPriceInCents: integer("appointment_price_in_cents").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
@@ -130,7 +129,7 @@ export const doctorsTable = pgTable("doctors", {
 
 export const doctorsTableRelations = relations(
   doctorsTable,
-  ({ one, many }) => ({
+  ({ many, one }) => ({
     clinic: one(clinicsTable, {
       fields: [doctorsTable.clinicId],
       references: [clinicsTable.id],
