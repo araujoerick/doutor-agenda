@@ -26,6 +26,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
+import Loader from "./loader";
+
 const registerSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório." }),
   email: z
@@ -125,7 +127,7 @@ const SignUpForm = () => {
               className="w-full"
               disabled={form.formState.isSubmitting}
             >
-              {form.formState.isSubmitting ? "Criando..." : "Criar conta"}
+              {form.formState.isSubmitting ? <Loader /> : "Criar conta"}
             </Button>
           </CardFooter>
         </form>
