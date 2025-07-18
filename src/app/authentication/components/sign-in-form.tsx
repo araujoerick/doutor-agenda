@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
@@ -25,6 +26,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
+
+import Loader from "./loader";
 
 const signInSchema = z.object({
   email: z
@@ -53,7 +56,12 @@ const SignInForm = () => {
         password: values.password,
       },
       {
-        onSuccess: () => router.push("/dashboard"),
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: () => {
+          toast.error("Email ou senha incorretos.");
+        },
       },
     );
   }
@@ -100,8 +108,12 @@ const SignInForm = () => {
             />
           </CardContent>
           <CardFooter>
-            <Button type="submit" className="w-full">
-              Entrar
+            <Button
+              type="submit"
+              className="w-full"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? <Loader /> : "Entrar"}
             </Button>
           </CardFooter>
         </form>
