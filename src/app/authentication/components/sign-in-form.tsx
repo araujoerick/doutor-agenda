@@ -27,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
-import Loader from "./loader";
+import Loader from "../../../components/loader";
 
 const signInSchema = z.object({
   email: z

@@ -27,7 +27,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
-import Loader from "./loader";
+import Loader from "../../../components/loader";
 
 const registerSchema = z.object({
   name: z.string().trim().min(1, { message: "Nome é obrigatório." }),
