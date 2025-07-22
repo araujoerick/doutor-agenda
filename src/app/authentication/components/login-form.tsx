@@ -29,7 +29,7 @@ import { authClient } from "@/lib/auth-client";
 
 import Loader from "../../../components/loader";
 
-const signInSchema = z.object({
+const loginSchema = z.object({
   email: z
     .string()
     .trim()
@@ -38,18 +38,18 @@ const signInSchema = z.object({
   password: z.string().min(8, "Senha deve ter pelo menos 8 caracteres."),
 });
 
-const SignInForm = () => {
+const LoginForm = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof signInSchema>>({
-    resolver: zodResolver(signInSchema),
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(values: z.infer<typeof signInSchema>) {
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
     await authClient.signIn.email(
       {
         email: values.email,
@@ -122,4 +122,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default LoginForm;

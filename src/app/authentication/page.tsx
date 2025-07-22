@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { auth } from "@/lib/auth";
 
-import SignInForm from "./components/sign-in-form";
+import LoginForm from "./components/login-form";
 import SignUpForm from "./components/sign-up-form";
 
 const AuthenticationPage = async () => {
@@ -24,7 +24,7 @@ const AuthenticationPage = async () => {
           <TabsTrigger value="register">Criar Conta</TabsTrigger>
         </TabsList>
         <TabsContent value="login">
-          <SignInForm />
+          <LoginForm />
         </TabsContent>
         <TabsContent value="register">
           <SignUpForm />
