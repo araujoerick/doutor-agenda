@@ -1,5 +1,6 @@
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
 import { db } from "@/db";
@@ -29,6 +30,13 @@ const DashboardPage = async () => {
     <div>
       <h1>Dashboard</h1>
       <pre>{JSON.stringify(session, null, 2)}</pre>
+      <br />
+      <Image
+        src={session.user.image ?? ""}
+        alt={session.user.name ?? ""}
+        width={100}
+        height={100}
+      />
       <br />
       <pre>{JSON.stringify(clinics, null, 2)}</pre>
       <SignOutButton />
