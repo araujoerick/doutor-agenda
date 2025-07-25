@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
-// import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -102,9 +102,12 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton size="lg">
-                  {/* <Avatar>
-                    <AvatarFallback>F</AvatarFallback>
-                  </Avatar> */}
+                  <Avatar>
+                    <AvatarImage src={session.data?.user.image ?? ""} />
+                    <AvatarFallback>
+                      {session.data?.user.name.slice(0, 1)}
+                    </AvatarFallback>
+                  </Avatar>
                   <div>
                     <p className="text-sm">
                       {session.data?.user?.clinic?.name}
