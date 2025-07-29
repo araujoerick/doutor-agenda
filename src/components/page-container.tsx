@@ -1,5 +1,5 @@
-export const PageContainer = () => {
-  return <div className="space-y-6 p-6">PageContainer</div>;
+export const PageContainer = ({ children }: { children: React.ReactNode }) => {
+  return <div className="space-y-6 p-6">{children}</div>;
 };
 
 export const PageHeader = ({ children }: { children: React.ReactNode }) => {
