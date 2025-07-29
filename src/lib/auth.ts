@@ -32,10 +32,12 @@ export const auth = betterAuth({
       return {
         user: {
           ...user,
-          clinic: {
-            id: clinic.clinic.id,
-            name: clinic.clinic.name,
-          },
+          clinic: clinic?.clinicId
+            ? {
+                id: clinic.clinic.id,
+                name: clinic.clinic.name,
+              }
+            : undefined,
         },
         session,
       };
