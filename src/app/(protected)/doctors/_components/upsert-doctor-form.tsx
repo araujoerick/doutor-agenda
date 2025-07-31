@@ -1,11 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-// import { useAction } from "next-safe-action/hooks";
+import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
 import { toast } from "sonner";
 import { z } from "zod";
 
-// import { upsertDoctor } from "@/actions/upsert-doctor";
+import { upsertDoctor } from "@/actions/upsert-doctor";
 import { Button } from "@/components/ui/button";
 import {
   DialogContent,
@@ -88,24 +88,25 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
       availableToTime: doctor?.availableToTime ?? "",
     },
   });
-  // const upsertDoctorAction = useAction(upsertDoctor, {
-  //   onSuccess: () => {
-  //     toast.success("Médico adicionado com sucesso.");
-  //     onSuccess?.();
-  //   },
-  //   onError: () => {
-  //     toast.error("Erro ao adicionar médico.");
-  //   },
-  // });
+
+  const upsertDoctorAction = useAction(upsertDoctor, {
+    onSuccess: () => {
+      toast.success("Médico adicionado com sucesso.");
+      onSuccess?.();
+    },
+    onError: () => {
+      toast.error("Erro ao adicionar médico.");
+    },
+  });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // upsertDoctorAction.execute({
-    //   ...values,
-    //   id: doctor?.id,
-    //   availableFromWeekDay: parseInt(values.availableFromWeekDay),
-    //   availableToWeekDay: parseInt(values.availableToWeekDay),
-    //   appointmentPriceInCents: values.appointmentPrice * 100,
-    // });
+    upsertDoctorAction.execute({
+      ...values,
+      id: doctor?.id,
+      availableFromWeekDay: parseInt(values.availableFromWeekDay),
+      availableToWeekDay: parseInt(values.availableToWeekDay),
+      appointmentPriceInCents: values.appointmentPrice * 100,
+    });
   };
 
   return (
@@ -381,14 +382,13 @@ const UpsertDoctorForm = ({ doctor, onSuccess }: UpsertDoctorFormProps) => {
             )}
           />
           <DialogFooter>
-            {/* <Button type="submit" disabled={upsertDoctorAction.isPending}>
+            <Button type="submit" disabled={upsertDoctorAction.isPending}>
               {upsertDoctorAction.isPending
                 ? "Salvando..."
                 : doctor
                   ? "Salvar"
                   : "Adicionar"}
-            </Button> */}
-            <Button type="submit">Salvar</Button>
+            </Button>
           </DialogFooter>
         </form>
       </Form>

@@ -60,8 +60,6 @@ export function AppSidebar() {
   const session = authClient.useSession();
   const pathname = usePathname();
 
-  console.log(session.data);
-
   const handleSignOut = () => {
     authClient.signOut({
       fetchOptions: {
